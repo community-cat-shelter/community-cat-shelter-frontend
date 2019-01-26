@@ -1,25 +1,27 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { Button, Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap'
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <Navbar>
+          <Navbar.Header>
+            <Navbar.Brand>
+              <a href="#home">Brand</a>
+            </Navbar.Brand>
+            <Navbar.Toggle />
+          </Navbar.Header>
+          <Navbar.Collapse>
+            <Navbar.Text>
+              Signed in as: <Navbar.Link href="#">Mark Otto</Navbar.Link>
+            </Navbar.Text>
+            <Navbar.Text pullRight>Have a great day!</Navbar.Text>
+          </Navbar.Collapse>
+        </Navbar>
+        <Button bsStyle="primary">Hi</Button>
       </div>
     );
   }

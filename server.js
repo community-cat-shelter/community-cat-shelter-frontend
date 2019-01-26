@@ -2,25 +2,26 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 const port = process.env.PORT || 5000;
-
 const dataStore = require('nedb');
 const db = new dataStore({ filename: 'db/catData.json', autoload: true });
+// db.loadDatabase();
 
-var cat = { houseNumber: 1, weight: 'weight', houseTemp: 'temp', today: new Date()};
-
-db.insert(cat, function (err, newCat) {   
+app.use(bodyParser.json())
+app.get('/', (req, res, callback) => {
+  db.find({}, function (err, docs) {
     if(err){
-        console.log("There was an error entering the cat into the db");
+      console.log(err);
     }else{
-        console.log("entering the cat" + newCat + " to the db worked just fine.")
+      console.log('SUCCESS')
+      console.log('docs ' + docs);
     }
-});
+  });
+
+  console.log('response' + res.body)
+  
 
 
-
-
-app.get('/', (req, res) => {
-  res.send({ express: 'Hello From Express' });
+  res.send({ express: res.body});
 });
 
 app.post('/', (req, res) => {

@@ -11,7 +11,7 @@ function saveDataFromPhoton() {
     rest.get(`https://api.particle.io/v1/devices/${particleConfig.deviceID}/weight?access_token=${particleConfig.accessToken}`).on('complete', (weightData) => {
         rest.get(`https://api.particle.io/v1/devices/${particleConfig.deviceID}/fTempShelter?access_token=${particleConfig.accessToken}`).on('complete', (shelterTempData) => {
             rest.get(`https://api.particle.io/v1/devices/${particleConfig.deviceID}/fTempAmbient?access_token=${particleConfig.accessToken}`).on('complete', (ambientTempData) => {
-                createCatData('1', weightData.result, shelterTempData.result, ambientTempData.result);
+                createCatData('1', Number.parseFloat(weightData.result).toFixed(2), Number.parseFloat(shelterTempData.result).toFixed(2), Number.parseFloat(ambientTempData.result).toFixed(2));
             });
         });
     });
@@ -38,4 +38,5 @@ function createCatData(houseNumber, weight, shelterTemp, ambientTemp){
 
 //For demo, query every 10 seconds, but we would want to make this less for real life
 //TODO data cleanup
+saveDataFromPhoton();
 setInterval(saveDataFromPhoton, 1000 * 10);

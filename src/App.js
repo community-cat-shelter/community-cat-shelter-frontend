@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {
   Navbar,
   Panel,
-  Grid,
   Row,
   Col
 } from 'react-bootstrap';

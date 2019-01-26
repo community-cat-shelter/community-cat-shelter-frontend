@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import {
   Navbar,
-  Panel,
   Row,
   Col
 } from 'react-bootstrap';
 import axios from 'axios';
+
+import CurrentDataPanel from './components/CurrentDataPanel';
 
 class App extends Component {
   componentDidMount() {
@@ -20,20 +21,25 @@ class App extends Component {
         <Navbar>
           <Navbar.Header>
             <Navbar.Brand>
-              <a href="#home">Community Cat Shelter</a>
+              <a href="#home">React-Bootstrap</a>
             </Navbar.Brand>
           </Navbar.Header>
         </Navbar>
-        <Row className="show-grid">
+        <Row>
           <Col md={4}>
           </Col>
-          <Col md={4}>
+          <Col md={3}>
           </Col>
           <Col md={4}>
-            <Panel>
-              <Panel.Heading>Live Feed</Panel.Heading>
-              <Panel.Body></Panel.Body>
-            </Panel>
+            <CurrentDataPanel/>
+          </Col>
+          <Col md={1}></Col>
+        </Row>
+        <hr></hr>
+        <Row>
+          <Col md={1}></Col>
+          <Col md={11}>
+            <h1>History</h1>
           </Col>
         </Row>
       </div>

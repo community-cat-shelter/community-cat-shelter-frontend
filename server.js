@@ -12,6 +12,8 @@ app.use(cors());
 
 const db = new dataStore({ filename: 'db/catData.db', autoload: true });
 
+const db = new dataStore({ filename: 'db/catData.db', autoload: true });
+
 app.get('/', (req, res) => {
   res.send({ express: 'Hello From Express' });
 });

@@ -1,26 +1,42 @@
 import React, { Component } from 'react';
-import './App.css';
-import { Button, Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap'
+import {
+  Navbar,
+  Panel,
+  Grid,
+  Row,
+  Col
+} from 'react-bootstrap';
+import axios from 'axios';
 
 class App extends Component {
+  componentDidMount() {
+    axios.get('http://localhost:5000/').then((response) => {
+      console.log(response);
+    });
+  }
+
   render() {
     return (
-      <div className="App">
+      <div>
         <Navbar>
           <Navbar.Header>
             <Navbar.Brand>
-              <a href="#home">Brand</a>
+              <a href="#home">Community Cat Shelter</a>
             </Navbar.Brand>
-            <Navbar.Toggle />
           </Navbar.Header>
-          <Navbar.Collapse>
-            <Navbar.Text>
-              Signed in as: <Navbar.Link href="#">Mark Otto</Navbar.Link>
-            </Navbar.Text>
-            <Navbar.Text pullRight>Have a great day!</Navbar.Text>
-          </Navbar.Collapse>
         </Navbar>
-        <Button bsStyle="primary">Hi</Button>
+        <Row className="show-grid">
+          <Col md={4}>
+          </Col>
+          <Col md={4}>
+          </Col>
+          <Col md={4}>
+            <Panel>
+              <Panel.Heading>Live Feed</Panel.Heading>
+              <Panel.Body></Panel.Body>
+            </Panel>
+          </Col>
+        </Row>
       </div>
     );
   }

@@ -3,7 +3,8 @@ import {
   Navbar,
   Panel,
   Row,
-  Col
+  Col,
+  Image
 } from 'react-bootstrap';
 import axios from 'axios';
 
@@ -26,12 +27,16 @@ class App extends Component {
         </Navbar>
         <Row className="show-grid">
           <Col md={4}>
+         
+          <Image src = {require("./cat_flat.jpg")} thumbnail/>
+          
           </Col>
           <Col md={4}>
           </Col>
           <Col md={4}>
             <Panel>
               <Panel.Heading>Live Feed</Panel.Heading>
+              
               <Panel.Body></Panel.Body>
             </Panel>
           </Col>

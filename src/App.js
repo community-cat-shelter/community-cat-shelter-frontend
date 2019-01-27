@@ -43,6 +43,7 @@ class App extends Component {
             <Panel style={{ float: 'right' }}>
             <center>
             <h1><small>Backyard Shelter</small></h1>
+            
             </center>
             <Panel.Body>
               <Image  src={require("./cat_flat.jpg")} thumbnail />

@@ -28,7 +28,7 @@ export default class CurrentDataPanel extends Component {
           <h5>{this.props.ambientTemp ? this.props.ambientTemp : '-'} (&#8457;)</h5>
           <br></br>
           <h4>Weight</h4>
-          <h5>{this.props.weight ? this.props.weight : '-'} (Oz)</h5>
+          <h5>{this.props.weight ? Number((this.props.weight / 16).toFixed(2)) : '-'} (lb)</h5>
         </Panel.Body>
       </Panel>
     );

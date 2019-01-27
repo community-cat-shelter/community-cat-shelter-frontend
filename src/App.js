@@ -4,31 +4,39 @@ import {
   Row,
   Col,
   Image,
-  Panel,
-  Label
-
-
+  Panel
 } from 'react-bootstrap';
-import axios from 'axios';
+
+import { getCatFlat } from './actions/catFlat';
 
 import CurrentDataPanel from './components/CurrentDataPanel';
-
-import styled from 'styled-components';
 
 import HistoryPanel from './components/HistoryPanel';
 
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      data: []
-    };
+  state = {
+    data: [],
+    mostRecentShelterTemp: '',
+    mostRecentAmbientTemp: '',
+    mostRecentWeight: ''
   }
 
   componentDidMount() {
-    axios.get('http://localhost:5000/catData?limit=30').then((response) => {
-      this.setState({data: response.data})
+    getCatFlat(30).then((response) => {
+      const data = response.data
+      const mostRecentShelterTemp = data[0].shelterTemp
+      const mostRecentAmbientTemp = data[0].ambientTemp
+      const mostRecentWeight = data[0].weight
+
+      this.setState({ 
+        data,
+        mostRecentShelterTemp,
+        mostRecentAmbientTemp,
+        mostRecentWeight
+      });
+
+      console.log(response.data)
     });
   }
 
@@ -38,8 +46,8 @@ class App extends Component {
 
         <Navbar>
           <Navbar.Header>
-            <Navbar.Brand >
-              <a href="#home">React-Bootstrap</a>
+            <Navbar.Brand>
+              <a href="#home">Cat Flat</a>
             </Navbar.Brand>
           </Navbar.Header>
         </Navbar>
@@ -58,7 +66,7 @@ class App extends Component {
           <Col md={3}>
           </Col>
           <Col md={4}>
-            <CurrentDataPanel />
+            <CurrentDataPanel shelterTemp={this.state.mostRecentShelterTemp} ambientTemp={this.state.mostRecentAmbientTemp} weight={this.state.mostRecentWeight}/>
           </Col>
           <Col md={1}></Col>
         </Row>

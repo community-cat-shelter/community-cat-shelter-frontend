@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import {
   Navbar,
+  Nav,
+  NavItem,
+  NavDropdown,
+  MenuItem,
   Row,
   Col,
   Image,
@@ -40,29 +44,63 @@ class App extends Component {
   render() {
     return (
       <div>
-
         <Navbar>
           <Navbar.Header>
             <Navbar.Brand>
-              <a href="#home">Cat Flat</a>
+              <a href="#home">Cat Flat.</a>
             </Navbar.Brand>
           </Navbar.Header>
+          <Nav pullRight>
+            <NavItem eventKey={1} href="#">
+              About
+            </NavItem>
+            <NavItem eventKey={2} href="#">
+              DIY Instructions
+            </NavItem>
+            <NavItem eventKey={3} href="#">
+              Resources
+            </NavItem>
+            <NavItem eventKey={4} href="#">
+              Gallery
+            </NavItem>
+            <NavItem eventKey={5} href="#">
+              Contact
+            </NavItem>
+            <NavItem eventKey={6} href="#">
+              Register Flat
+            </NavItem>
+            <NavDropdown eventKey={7} title="Login" id="basic-nav-dropdown">
+              <MenuItem eventKey={3.1}>Profile</MenuItem>
+              <MenuItem eventKey={3.2}>Privacy</MenuItem>
+              <MenuItem divider />
+              <MenuItem eventKey={3.3}>Logout</MenuItem>
+            </NavDropdown>
+          </Nav>
         </Navbar>
         <Row>
+          <Col md={1}>
+          </Col>
           <Col md={5}>
 
-            <Panel style={{ float: 'right' }}>
-            <center>
-            <h1><small>Backyard Shelter</small></h1>
-            </center>
-            <Panel.Body>
-              <Image  src={require("./cat_flat.jpg")} thumbnail />
+            <Panel>
+              <Panel.Heading>
+                <h4>
+                  Shelter Profile
+                </h4>
+              </Panel.Heading>
+              <Panel.Body>
+                <h4>Name</h4>
+                <h5>Backyard Shelter</h5>
+                <br></br>
+                <h4>Location</h4>
+                <h5>Minneapolis, MN</h5>
+                <br></br>
+                <h4>Photo</h4>
+                <Image src={require("./cat_flat.jpg")} thumbnail />
               </Panel.Body>
             </Panel>
           </Col>
-          <Col md={3}>
-          </Col>
-          <Col md={4}>
+          <Col md={5}>
             <CurrentDataPanel shelterTemp={this.state.mostRecentShelterTemp} ambientTemp={this.state.mostRecentAmbientTemp} weight={this.state.mostRecentWeight}/>
           </Col>
        
@@ -70,7 +108,7 @@ class App extends Component {
         <hr></hr>
         <Row>
           <Col md={1}></Col>
-          <Col md={11}>
+          <Col md={10}>
             <HistoryPanel data={this.state.data}/>
           </Col>
         </Row>

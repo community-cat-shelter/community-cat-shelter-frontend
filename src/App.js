@@ -21,16 +21,22 @@ import HistoryPanel from './components/HistoryPanel';
 class App extends Component {
   state = {
     data: [],
-    mostRecentShelterTemp: '',
-    mostRecentAmbientTemp: '',
-    mostRecentWeight: ''
+    mostRecentShelterTemp: 0,
+    mostRecentAmbientTemp: 0,
+    mostRecentWeight: 0
   }
 
   componentDidMount() {
     getCatFlat(30).then((data) => {
-      const mostRecentShelterTemp = data[0].shelterTemp;
-      const mostRecentAmbientTemp = data[0].ambientTemp;
-      const mostRecentWeight = data[0].weight;
+      let mostRecentShelterTemp = 0;
+      let mostRecentAmbientTemp = 0;
+      let mostRecentWeight = 0;
+
+      if (data.length > 0) {
+        mostRecentShelterTemp = data[0].shelterTemp;
+        mostRecentAmbientTemp = data[0].ambientTemp;
+        mostRecentWeight = data[0].weight;
+      }
 
       this.setState({ 
         data,

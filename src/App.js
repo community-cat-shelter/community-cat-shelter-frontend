@@ -12,17 +12,23 @@ import {
 import axios from 'axios';
 
 import CurrentDataPanel from './components/CurrentDataPanel';
+
 import styled from 'styled-components';
 
+import HistoryPanel from './components/HistoryPanel';
 
-const catImage = styled(Image)`
-  float: right;
-`;
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: []
+    };
+  }
+
   componentDidMount() {
-    axios.get('http://localhost:5000/').then((response) => {
-      console.log(response);
+    axios.get('http://localhost:5000/catData?limit=30').then((response) => {
+      this.setState({data: response.data})
     });
   }
 
@@ -60,7 +66,7 @@ class App extends Component {
         <Row>
           <Col md={1}></Col>
           <Col md={11}>
-            <h1>History</h1>
+            <HistoryPanel data={this.state.data}/>
           </Col>
         </Row>
       </div>

@@ -16,11 +16,17 @@ app.get('/', (req, res) => {
   res.send({ express: 'Hello From Express' });
 });
 
+// <host>/catData?limit=1 (limit is optional)
 app.get('/catData', (req, res, callback) => {
-  db.find({}, function (err, docs) {
-    console.log(err, docs);
-    res.send(200, docs);
-  });
+    if (req.query.limit !== undefined) {
+      db.find({}).limit(req.query.limit).sort({ date: -1 }).exec(function (err, docs) {
+        res.send(200, docs);
+      });
+    } else {
+      db.find({}, function (err, docs) {
+        res.send(200, docs);
+      });
+    }
  });
 
 app.post('/', (req, res) => {

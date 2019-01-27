@@ -38,24 +38,22 @@ class App extends Component {
           </Navbar.Header>
         </Navbar>
         <Row>
-          <Col md={4}>
+          <Col md={5}>
 
             <Panel style={{ float: 'right' }}>
             <center>
             <h1><small>Backyard Shelter</small></h1>
-            
             </center>
             <Panel.Body>
               <Image  src={require("./cat_flat.jpg")} thumbnail />
               </Panel.Body>
             </Panel>
           </Col>
-          <Col md={3}>
-          </Col>
-          <Col md={4}>
+         
+          <Col md={6}>
             <CurrentDataPanel />
           </Col>
-          <Col md={1}></Col>
+       
         </Row>
         <hr></hr>
         <Row>

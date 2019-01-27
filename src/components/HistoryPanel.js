@@ -31,8 +31,8 @@ class HistoryPanel extends React.Component {
                             <tr>
                                 <th scope="col">Time</th>
                                 <th scope="col">Weight (Oz)</th>
-                                <th scope="col">Shelter Temp (&#8457;)</th>
-                                <th scope="col">Ambient Temp (&#8457;)</th>
+                                <th scope="col">Shelter Temperature (&#8457;)</th>
+                                <th scope="col">Ambient Temperature (&#8457;)</th>
                             </tr>
                         </thead>
                         <tbody>

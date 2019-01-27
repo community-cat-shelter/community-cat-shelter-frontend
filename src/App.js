@@ -52,7 +52,7 @@ class App extends Component {
           </Navbar.Header>
         </Navbar>
         <Row>
-          <Col md={4}>
+          <Col md={5}>
 
             <Panel style={{ float: 'right' }}>
             <center>
@@ -68,7 +68,7 @@ class App extends Component {
           <Col md={4}>
             <CurrentDataPanel shelterTemp={this.state.mostRecentShelterTemp} ambientTemp={this.state.mostRecentAmbientTemp} weight={this.state.mostRecentWeight}/>
           </Col>
-          <Col md={1}></Col>
+       
         </Row>
         <hr></hr>
         <Row>

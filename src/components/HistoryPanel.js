@@ -12,7 +12,7 @@ class HistoryPanel extends React.Component {
         return (
             <tr key={`table-${i}`}>
                 <td>{reading.date.toString()}</td>
-                <td>{reading.weight}</td>
+                <td>{Number((reading.weight/16).toFixed(2))}</td>
                 <td>{reading.shelterTemp}</td>
                 <td>{reading.ambientTemp}</td>
             </tr>);
@@ -30,7 +30,7 @@ class HistoryPanel extends React.Component {
                         <thead>
                             <tr>
                                 <th scope="col">Time</th>
-                                <th scope="col">Weight (Oz)</th>
+                                <th scope="col">Weight (lb)</th>
                                 <th scope="col">Shelter Temperature (&#8457;)</th>
                                 <th scope="col">Ambient Temperature (&#8457;)</th>
                             </tr>

@@ -19,8 +19,10 @@ export default class CurrentDataPanel extends Component {
         <Panel.Body>
           <h4>Shelter Temperature</h4>
           <h5>{this.props.shelterTemp} degrees</h5>
+          <br></br>
           <h4>Ambient Temperature</h4>
           <h5>{this.props.ambientTemp} degrees</h5>
+          <br></br>
           <h4>Weight</h4>
           <h5>{this.props.weight} oz</h5>
         </Panel.Body>

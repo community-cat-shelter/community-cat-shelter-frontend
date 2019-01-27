@@ -1,4 +1,5 @@
 import React from 'react';
+import { Panel } from 'react-bootstrap';
 
 class HistoryPanel extends React.Component {
    constructor(props) {
@@ -19,20 +20,27 @@ class HistoryPanel extends React.Component {
 
        return (
            <div>
-               <h2>Last 30 Readings</h2>
-               <table className="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">Time</th>
-                            <th scope="col">Weight (Oz)</th>
-                            <th scope="col">Shelter Temp (&#8457;)</th>
-                            <th scope="col">Ambient Temp (&#8457;)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {propsOut}
-                    </tbody>
-                </table>
+               <Panel>
+                   <Panel.Heading>
+                        <h4>Last 30 Readings</h4>
+                   </Panel.Heading>
+                   <Panel.Body>
+
+                    <table className="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Time</th>
+                                <th scope="col">Weight (Oz)</th>
+                                <th scope="col">Shelter Temp (&#8457;)</th>
+                                <th scope="col">Ambient Temp (&#8457;)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {propsOut}
+                        </tbody>
+                    </table>
+                   </Panel.Body>
+               </Panel>
            </div>
        );
    }

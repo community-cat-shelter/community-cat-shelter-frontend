@@ -19,7 +19,7 @@ app.get('/', (req, res) => {
 // <host>/catData?limit=1 (limit is optional)
 app.get('/catData', (req, res, callback) => {
     if (req.query.limit !== undefined) {
-      db.find({}).limit(req.query.limit ).exec(function (err, docs) {
+      db.find({}).limit(req.query.limit).sort({ date: -1 }).exec(function (err, docs) {
         res.send(200, docs);
       });
     } else {

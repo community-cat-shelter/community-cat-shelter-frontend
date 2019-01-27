@@ -8,23 +8,27 @@ const OccupancyLabel = styled(Label)`
 
 export default class CurrentDataPanel extends Component {
   render() {
+    const occupied = parseInt(this.props.weight) > 16 ? true : false
     return (
       <Panel>
         <Panel.Heading>
           <h4>
             Current Status
-            <OccupancyLabel bsStyle="success">Occupied</OccupancyLabel>
+            {
+              occupied ? <OccupancyLabel bsStyle="success">Occupied</OccupancyLabel> :
+                <OccupancyLabel>Unoccupied</OccupancyLabel>
+            }
           </h4>
         </Panel.Heading>
         <Panel.Body>
           <h4>Shelter Temperature</h4>
-          <h5>{this.props.shelterTemp} (&#8457;)</h5>
+          <h5>{this.props.shelterTemp ? this.props.shelterTemp : '-'} (&#8457;)</h5>
           <br></br>
           <h4>Ambient Temperature</h4>
-          <h5>{this.props.ambientTemp} (&#8457;)</h5>
+          <h5>{this.props.ambientTemp ? this.props.ambientTemp : '-'} (&#8457;)</h5>
           <br></br>
           <h4>Weight</h4>
-          <h5>{this.props.weight} (Oz)</h5>
+          <h5>{this.props.weight ? this.props.weight : '-'} (Oz)</h5>
         </Panel.Body>
       </Panel>
     );

@@ -4,25 +4,39 @@ import {
   Row,
   Col,
   Image,
-  Panel,
-  Label
-
-
+  Panel
 } from 'react-bootstrap';
-import axios from 'axios';
+
+import { getCatFlat } from './actions/catFlat';
 
 import CurrentDataPanel from './components/CurrentDataPanel';
-import styled from 'styled-components';
 
+import HistoryPanel from './components/HistoryPanel';
 
-const catImage = styled(Image)`
-  float: right;
-`;
 
 class App extends Component {
+  state = {
+    data: [],
+    mostRecentShelterTemp: '',
+    mostRecentAmbientTemp: '',
+    mostRecentWeight: ''
+  }
+
   componentDidMount() {
-    axios.get('http://localhost:5000/').then((response) => {
-      console.log(response);
+    getCatFlat(30).then((response) => {
+      const data = response.data
+      const mostRecentShelterTemp = data[0].shelterTemp
+      const mostRecentAmbientTemp = data[0].ambientTemp
+      const mostRecentWeight = data[0].weight
+
+      this.setState({ 
+        data,
+        mostRecentShelterTemp,
+        mostRecentAmbientTemp,
+        mostRecentWeight
+      });
+
+      console.log(response.data)
     });
   }
 
@@ -32,8 +46,8 @@ class App extends Component {
 
         <Navbar>
           <Navbar.Header>
-            <Navbar.Brand >
-              <a href="#home">React-Bootstrap</a>
+            <Navbar.Brand>
+              <a href="#home">Cat Flat</a>
             </Navbar.Brand>
           </Navbar.Header>
         </Navbar>
@@ -49,9 +63,10 @@ class App extends Component {
               </Panel.Body>
             </Panel>
           </Col>
-         
-          <Col md={6}>
-            <CurrentDataPanel />
+          <Col md={3}>
+          </Col>
+          <Col md={4}>
+            <CurrentDataPanel shelterTemp={this.state.mostRecentShelterTemp} ambientTemp={this.state.mostRecentAmbientTemp} weight={this.state.mostRecentWeight}/>
           </Col>
        
         </Row>
@@ -59,7 +74,7 @@ class App extends Component {
         <Row>
           <Col md={1}></Col>
           <Col md={11}>
-            <h1>History</h1>
+            <HistoryPanel data={this.state.data}/>
           </Col>
         </Row>
       </div>

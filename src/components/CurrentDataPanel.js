@@ -17,12 +17,12 @@ export default class CurrentDataPanel extends Component {
           </h4>
         </Panel.Heading>
         <Panel.Body>
-          <h4>Outside Temperature</h4>
-          <h5>32 degrees</h5>
-          <h4>Inside Temperature</h4>
-          <h5>72 degrees</h5>
+          <h4>Shelter Temperature</h4>
+          <h5>{this.props.shelterTemp} degrees</h5>
+          <h4>Ambient Temperature</h4>
+          <h5>{this.props.ambientTemp} degrees</h5>
           <h4>Weight</h4>
-          <h5>12.7 pounds</h5>
+          <h5>{this.props.weight} oz</h5>
         </Panel.Body>
       </Panel>
     );

@@ -16,11 +16,15 @@ function saveDataFromPhoton() {
     rest.get(`https://api.particle.io/v1/devices/${particleConfig.deviceID}/weight?access_token=${particleConfig.accessToken}`).on('complete', (weightData) => {
         rest.get(`https://api.particle.io/v1/devices/${particleConfig.deviceID}/fTempShelter?access_token=${particleConfig.accessToken}`).on('complete', (shelterTempData) => {
             rest.get(`https://api.particle.io/v1/devices/${particleConfig.deviceID}/fTempAmbient?access_token=${particleConfig.accessToken}`).on('complete', (ambientTempData) => {
-                db.run("CREATE TABLE IF NOT EXISTS catData (date INTEGER, weight NUMERIC, shelterTemp NUMERIC, ambientTemp NUMERIC);");
-                var d = new Date();
-                var seconds = Math.round(d.getTime() / 1000);
-                db.run(`INSERT INTO catData (date, weight, shelterTemp, ambientTemp) VALUES (${seconds}, ${Number.parseFloat(weightData.result).toFixed(2)}, ${Number.parseFloat(shelterTempData.result).toFixed(2)}, ${Number.parseFloat(ambientTempData.result).toFixed(2)})`);
-                logger.info("New cat data added");
+                if (weightData.error) {
+                    console.log("error!", weightData.error);
+                } else {
+                    db.run("CREATE TABLE IF NOT EXISTS catData (date INTEGER, weight NUMERIC, shelterTemp NUMERIC, ambientTemp NUMERIC);");
+                    var d = new Date();
+                    var seconds = Math.round(d.getTime() / 1000);
+                    db.run(`INSERT INTO catData (date, weight, shelterTemp, ambientTemp) VALUES (${seconds}, ${Number.parseFloat(weightData.result).toFixed(2)}, ${Number.parseFloat(shelterTempData.result).toFixed(2)}, ${Number.parseFloat(ambientTempData.result).toFixed(2)})`);
+                    logger.info("New cat data added");
+                }
             });
         });
     });

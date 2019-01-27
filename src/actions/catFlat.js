@@ -8,7 +8,12 @@ export const getCatFlat = (limit) => {
       var utcSeconds = element.date;
       var d = new Date(0);
       d.setUTCSeconds(utcSeconds);
-      formattedResp.push({date: d, weight: element.weight, shelterTemp: element.shelterTemp, ambientTemp: element.ambientTemp});
+      formattedResp.push({
+        date: d, 
+        weight: element.weight, 
+        shelterTemp: element.shelterTemp < 100 ? element.shelterTemp : '-', 
+        ambientTemp: element.ambientTemp < 100 ? element.ambientTemp : '-'
+      });
     });
     return formattedResp;
   });

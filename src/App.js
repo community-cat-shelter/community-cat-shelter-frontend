@@ -2,13 +2,17 @@ import React, { Component } from 'react';
 import {
   Navbar,
   Row,
-  Col
+  Col,
+  Image,
+  Panel
 } from 'react-bootstrap';
-import axios from 'axios';
+
 import { getCatFlat } from './actions/catFlat';
 
 import CurrentDataPanel from './components/CurrentDataPanel';
+
 import HistoryPanel from './components/HistoryPanel';
+
 
 class App extends Component {
   state = {
@@ -39,6 +43,7 @@ class App extends Component {
   render() {
     return (
       <div>
+
         <Navbar>
           <Navbar.Header>
             <Navbar.Brand>
@@ -48,6 +53,15 @@ class App extends Component {
         </Navbar>
         <Row>
           <Col md={4}>
+
+            <Panel style={{ float: 'right' }}>
+            <center>
+            <h1><small>Backyard Shelter</small></h1>
+            </center>
+            <Panel.Body>
+              <Image  src={require("./cat_flat.jpg")} thumbnail />
+              </Panel.Body>
+            </Panel>
           </Col>
           <Col md={3}>
           </Col>

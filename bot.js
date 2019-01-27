@@ -39,4 +39,4 @@ function createCatData(houseNumber, weight, shelterTemp, ambientTemp){
 //For demo, query every 10 seconds, but we would want to make this less for real life
 //TODO data cleanup
 saveDataFromPhoton();
-setInterval(saveDataFromPhoton, 1000 * 10);
+setInterval(saveDataFromPhoton, 1000 * 30);

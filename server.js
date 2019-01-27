@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const dataStore = require('nedb');
+const sqlite3 = require('sqlite3').verbose();
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -10,23 +10,35 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
-const db = new dataStore({ filename: 'db/catData.db', autoload: true });
-
 app.get('/', (req, res) => {
   res.send({ express: 'Hello From Express' });
 });
 
 // <host>/catData?limit=1 (limit is optional)
 app.get('/catData', (req, res, callback) => {
-    if (req.query.limit !== undefined) {
-      db.find({}).sort({ date: -1 }).limit(req.query.limit).exec(function (err, docs) {
-        res.status(200).send(docs);
-      });
-    } else {
-      db.find({}, function (err, docs) {
-        res.status(200).send(docs);
-      });
+  let db = new sqlite3.Database('./db/catData.db', sqlite3.OPEN_READONLY, (err) => {
+    if (err) {
+      console.error(err);
     }
+  });
+
+  if (req.query.limit === undefined) {
+    db.all('SELECT date, weight, shelterTemp, ambientTemp FROM catData ORDER BY date DESC', function(err, rows) {
+      if (err) {
+        res.status(500).send(err); 
+      } else {
+        res.status(200).send(rows);
+      }
+    });
+  } else {
+    db.all(`SELECT date, weight, shelterTemp, ambientTemp FROM catData ORDER BY date DESC LIMIT ${req.query.limit}`, function(err, rows) {
+      if (err) {
+        res.status(500).send(err); 
+      } else {
+        res.status(200).send(rows);
+      }
+    });
+  }
  });
 
 app.post('/', (req, res) => {

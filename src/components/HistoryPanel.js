@@ -10,7 +10,7 @@ class HistoryPanel extends React.Component {
         const javascriptDate = new Date(reading.date);
         return (
             <tr key={`table-${i}`}>
-                <td>{reading.date}</td>
+                <td>{reading.date.toString()}</td>
                 <td>{reading.weight}</td>
                 <td>{reading.shelterTemp}</td>
                 <td>{reading.ambientTemp}</td>

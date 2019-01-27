@@ -23,11 +23,10 @@ class App extends Component {
   }
 
   componentDidMount() {
-    getCatFlat(30).then((response) => {
-      const data = response.data
-      const mostRecentShelterTemp = data[0].shelterTemp
-      const mostRecentAmbientTemp = data[0].ambientTemp
-      const mostRecentWeight = data[0].weight
+    getCatFlat(30).then((data) => {
+      const mostRecentShelterTemp = data[0].shelterTemp;
+      const mostRecentAmbientTemp = data[0].ambientTemp;
+      const mostRecentWeight = data[0].weight;
 
       this.setState({ 
         data,
@@ -35,8 +34,6 @@ class App extends Component {
         mostRecentAmbientTemp,
         mostRecentWeight
       });
-
-      console.log(response.data)
     });
   }
 
